@@ -6,3 +6,58 @@
 {% block titulo %}
     <h1>Bienvenido a la pagina de profesores</h1>
 {% endblock %}
+
+{% block contenido_que_cambia %}
+    <h1>Bienvenido profesores</h1>
+    <table border="5">
+        <thead>
+            <tr>
+                <td bgcolor="#00FFFF">ID</td>
+                <td bgcolor="#6495ED">nombre</td>
+                <td bgcolor="#00FFFF">apellido</td>
+                <td bgcolor="#6495ED">email</td>
+                <td bgcolor="#00FFFF">profesion</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+            <tr>
+                <td>
+                    {{profesor.ID}}
+                </td>
+                <td>
+                    {{profesor.nombre}}
+                </td>
+                <td>
+                    {{profesor.apellido}}
+                </td>
+                <td>
+                    {{profesor.email}}
+                </td>
+                <td>
+                    {{profesor.profesion}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <form action="" method="post">
+            <label>Nombre</label>
+            <input type="text">
+    
+            <label>Apellido</label>
+            <input type="text"> <br/> <br/>
+    
+            <label>Nro. celular</label>
+            <input type="text"> <br/> <br/>
+    
+            <label>Email</label>
+            <input type="text"> <br/> <br/>
+    
+            <label>Profesion:</label>
+            <input type="text"> <br/> <br/>
+
+
+            <input type="submit" value="Agregar" />
+        </form>
+    </table>
+{% endblock %}
