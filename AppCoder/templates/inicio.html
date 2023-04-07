@@ -6,3 +6,65 @@
 {% block titulo %}
     <h1>Bienvenido a la pagina de inicio</h1>
 {% endblock %}
+
+{% block contenido_2 %}
+
+    <!-- Image Showcases-->
+    <section class="showcase">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <img class="col-lg-6 order-lg-2 text-white showcase-img" src="{% static 'assets/img/advanced_animation.26.png' %}"></img>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Tu lugar para aprender</h2>
+                    <p class="lead mb-0">En esta lugar podras encontrar los mejores cursos de Modelado 3D, Render y Animaciones.</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <img class="col-lg-6 text-white showcase-img" src="{% static 'assets/img/bg-showcase-2.jpg' %}"></img>
+                <div class="col-lg-6 my-auto showcase-text">
+                    <h2>Git Hub</h2>
+                    <p class="lead mb-0">En asosiacion con Git Hub unimos nuestras plataformas.</p>
+                    <p class="lead mb-1">Ahora podras hacer todo lo que hacias en la plataforma de Git Hub como compartir y encontrar repositorios y/o proyectos.</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <img class="col-lg-6 order-lg-2 text-white showcase-img" src="{% static 'assets/img/bg-showcase-3.jpg' %}"></img>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Plantillas gratuitas</h2>
+                    <p class="lead mb-0">Podras encontrar varias plantillas de diseño de paginas web, que podras descargar gratuitamente para tus proyectos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials-->
+    <section class="testimonials text-center bg-light">
+        <div class="container">
+            <h2 class="mb-5">What people are saying...</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/testimonials-1.jpg' %}" alt="..." />
+                        <h5>Margaret E.</h5>
+                        <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/testimonials-2.jpg' %}" alt="..." />
+                        <h5>Fred S.</h5>
+                        <p class="font-weight-light mb-0">"Project AppCoder is amazing. I've been using it to create lots of super nice landing pages."</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/testimonials-3.jpg' %}" alt="..." />
+                        <h5>Sarah W.</h5>
+                        <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+{% endblock %}
