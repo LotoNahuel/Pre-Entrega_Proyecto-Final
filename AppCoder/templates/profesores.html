@@ -7,68 +7,64 @@
     <h1>Bienvenido a la pagina de profesores</h1>
 {% endblock %}
 
+
 {% block contenido_que_cambia %}
 
-    <table border="5">
-        <form action="" method="post">
-            <table border="2">
-                {{ form }}
-                {% csrf_token %}
-            </table>
+    <section class="showcase">
+        <div class="container-fluid p-2">
+            <div class="row g-0">
+                <div class="col-lg-4 order-lg-2 my-auto showcase-text">
+                    <div id="main-container">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
+                                </tr>
+                            
+                                {% for profesor in profesores %}
+                                <tr>
+                                    <td>
+                                        {{profesor.id}}
+                                    </td>
+                                    <td>
+                                        {{profesor.nombre}}
+                                    </td>
+                                    <td>
+                                        {{profesor.apellido}}
+                                    </td>
+                                    <td>
+                                        {{profesor.email}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Formulario:</h2>
+                    <p class="lead mb-0">Complete los campos, si es usuario nuevo.</p>
+                    <div id="main-container">
+                        <table>
+                            <form action="" method="post">
+                                <table>
+                                    {{ form }}
+                                    {% csrf_token %}
+                                </table>
+                    
+                                <table>
+                                    <input type="submit" value="Agregar"/>
+                                </table>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
 
-            <table border="2">
-                <input type="submit" value="Agregar"/>
-            </table>
-        </form>
-
-        <form action="" method="GET">
-            <input type="number" placeholder="Buscar..." name="buscar" value="">
-            <input type="submit" value="Buscar">
-            
-            {% if profesores %}
-
-            <ul>
-                {% for profesor in profesores %}
-                <li> {{profesor.id}} </li>
-                <li> {{profesor.nombre}} </li>
-                <li> {{profesor.apellido}} </li>
-                <li> {{profesor.email}} </li>
-                {% endfor %}
-            </ul>
-
-            {% endif %}
-
-        </form>
-
-    </table>
-
-    <table border="5">
-        <thead>
-            <tr>
-                <td bgcolor="#00FFFF">ID</td>
-                <td bgcolor="#6495ED">nombre</td>
-                <td bgcolor="#00FFFF">apellido</td>
-                <td bgcolor="#6495ED">email</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for profesor in profesores %}
-            <tr>
-                <td>
-                    {{profesor.id}}
-                </td>
-                <td>
-                    {{profesor.nombre}}
-                </td>
-                <td>
-                    {{profesor.apellido}}
-                </td>
-                <td>
-                    {{profesor.email}}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-
-    </table>
 {% endblock %}

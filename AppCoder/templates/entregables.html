@@ -7,44 +7,60 @@
     <h1>Bienvenido a la pagina de entregables</h1>
 {% endblock %}
 
+
 {% block contenido_que_cambia %}
 
-    <table border="5">
-        <form action="" method="post">
-            <table border="2">
-                {{ form }}
-                {% csrf_token %}
-            </table>
+    <section class="showcase">
+        <div class="container-fluid p-2">
+            <div class="row g-0">
+                <div class="col-lg-4 order-lg-2 my-auto showcase-text">
+                    <div id="main-container">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Nombre del Trabajo</td>
+                                    <td>Fecha del entregable</td>
+                                    <td>Se realizo la entrega</td>
+                                </tr>
+                            
+                                {% for entregable in entregables %}
+                                <tr>
+                                    <td>
+                                        {{entregable.nombre}}
+                                    </td>
+                                    <td>
+                                        {{entregable.fecha_entregable}}
+                                    </td>
+                                    <td>
+                                        {{entregable.entregado}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Formulario:</h2>
+                    <p class="lead mb-0">Complete los campos, para agregar un entregable.</p>
+                    <div id="main-container">
+                        <table>
+                            <form action="" method="post">
+                                <table>
+                                    {{ form }}
+                                    {% csrf_token %}
+                                </table>
+                    
+                                <table>
+                                    <input type="submit" value="Agregar"/>
+                                </table>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
 
-            <table border="2">
-                <input type="submit" value="Agregar"/>
-            </table>
-        </form>
-
-    </table>
-
-    <table border="5">
-        <thead>
-            <tr>
-                <td bgcolor="#00FFFF">nombre</td>
-                <td bgcolor="#6495ED">fecha entregable</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entregable in entregables %}
-            <tr>
-                <td>
-                    {{entregable.nombre}}
-                </td>
-                <td>
-                    {{entregable.fecha_entregable}}
-                </td>
-                <td>
-                    {{entregable.entregado}}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-
-    </table>
 {% endblock %}

@@ -15,12 +15,14 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+        <link href="{% static 'css/table.css' %}" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'inicio App' %}">Inicio</a>
+                <a class="btn btn-primary" href="{% url 'inicio App' %}">Inicio</a>
                 <a class="btn btn-info" href="{% url 'cursos' %}">CURSOS</a>
                 <a class="btn btn-primary" href="{% url 'profesores' %}">PROFESORES</a>
                 <a class="btn btn-info" href="{% url 'estudiantes' %}">ESTUDIANTES</a>
@@ -50,13 +52,12 @@
                 </div>
             </div>
         </header>
+        
 
-
-        <div class="container">
         {% block contenido_que_cambia %}
 
         {% endblock %}
-        </div>
+
 
         <!-- Image Showcases-->
         <section class="showcase">
