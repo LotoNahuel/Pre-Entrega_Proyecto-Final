@@ -9,6 +9,39 @@
 
 {% block contenido_que_cambia %}
 
-<h1>Hola curso de Python</h1>
+    <table border="5">
+        <form action="" method="post">
+            <table border="2">
+                {{ form }}
+                {% csrf_token %}
+            </table>
 
+            <table border="2">
+                <input type="submit" value="Agregar"/>
+            </table>
+        </form>
+
+    </table>
+
+    <table border="5">
+        <thead>
+            <tr>
+                <td bgcolor="#00FFFF">nombre</td>
+                <td bgcolor="#6495ED">comision</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td>
+                    {{curso.nombre}}
+                </td>
+                <td>
+                    {{curso.comision}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
 {% endblock %}

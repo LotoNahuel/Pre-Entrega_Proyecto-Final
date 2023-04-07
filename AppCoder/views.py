@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Curso, Profesor
+from .models import *
 from django.http import HttpResponse
-from .forms import ProfesorForm
+from .forms import *
 from django.db.models import Q
 # Create your views here.
 
@@ -19,7 +19,20 @@ def CursoFormulario(request):
     return render(request, "curso.html")
 
 def cursos(request):
-    return render(request, "cursos.html")
+    if request.method == "POST":
+        form = CursoForm(request.POST)
+        if form.is_valid():            
+            curso = Curso()
+            curso.nombre = form.cleaned_data["nombre"]
+            curso.comision = form.cleaned_data["comision"]
+            curso.save()
+            form = CursoForm()
+    else:
+        form = CursoForm()
+
+    cursos = Curso.objects.all()
+    context = {"cursos": cursos, "form" : form}
+    return render(request, "cursos.html", context)
 
 def profesores(request):
     
@@ -40,10 +53,39 @@ def profesores(request):
     return render(request, "profesores.html", context)
 
 def estudiantes(request):
-    return render(request, "estudiantes.html")
+    if request.method == "POST":
+        form = EstudianteForm(request.POST)
+        if form.is_valid():            
+            estudiante = Estudiante()
+            estudiante.nombre = form.cleaned_data["nombre"]
+            estudiante.apellido = form.cleaned_data["apellido"]
+            estudiante.email = form.cleaned_data["email"]
+            estudiante.save()
+            form = EstudianteForm()
+    else:
+        form = EstudianteForm()
+
+    estudiantes = Estudiante.objects.all()
+    context = {"estudiantes": estudiantes, "form" : form}
+    return render(request, "estudiantes.html", context)
+
 
 def entregables(request):
-    return render(request, "entregables.html")
+    if request.method == "POST":
+        form = EntregableForm(request.POST)
+        if form.is_valid():            
+            entregable = Entregable()
+            entregable.nombre = form.cleaned_data["nombre"]
+            entregable.fecha_entregable = form.cleaned_data["fecha_entregable"]
+            entregable.entregado = form.cleaned_data["entregado"]
+            entregable.save()
+            form = EntregableForm()
+    else:
+        form = EntregableForm()
+
+    entregables = Entregable.objects.all()
+    context = {"entregables": entregables, "form" : form}
+    return render(request, "entregables.html", context)
 
 def inicio(request):
     return HttpResponse("Bienvenido a la pagina principal")
