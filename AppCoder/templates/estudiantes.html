@@ -40,14 +40,23 @@
                     <div id="main-container">
                         <table>
                             <tbody>
+                                <form action="{% url 'buscarEstudiante' %}" method="GET">                            
+                                    <input type="number" name="id" id="id" placeholder="INSERTE ID">                              
+                                    <input type="submit" value="Buscar por ID">                                                                
+                                </form>
+                                {% if estudiantes %}                                      
                                 <tr>
-                                    <td>Nombre</td>
-                                    <td>Apellido</td>
-                                    <td>Email</td>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
                                 </tr>
                             
                                 {% for estudiante in estudiantes %}
                                 <tr>
+                                    <td>
+                                        {{estudiante.id}}
+                                    </td>
                                     <td>
                                         {{estudiante.nombre}}
                                     </td>
@@ -59,6 +68,12 @@
                                     </td>
                                 </tr>
                                 {% endfor %}
+
+                                {% else %}
+
+                                <td>No hay ningun estudiante registrado con esa ID</td>
+
+                                {% endif %}
                             </tbody>
                         </table>                
                     </div>

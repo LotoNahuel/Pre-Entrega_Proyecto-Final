@@ -17,10 +17,15 @@
                     <div id="main-container">
                         <table>
                             <tbody>
+                                <form action="{% url 'buscarEntregable' %}" method="GET">                            
+                                    <input type="text" name="nombre" id="nombre" placeholder="INSERTE NOMBRE DEL ENTREGABLE">                              
+                                    <input type="submit" value="Buscar por Nombre del entregable">                                                                
+                                </form>
+                                {% if entregables %}
                                 <tr>
-                                    <td>Nombre del Trabajo</td>
-                                    <td>Fecha del entregable</td>
-                                    <td>Se realizo la entrega</td>
+                                    <th>Nombre del Trabajo</th>
+                                    <th>Fecha del entregable</th>
+                                    <th>Se realizo la entrega</th>
                                 </tr>
                             
                                 {% for entregable in entregables %}
@@ -36,6 +41,12 @@
                                     </td>
                                 </tr>
                                 {% endfor %}
+
+                                {% else %}
+
+                                <td>No hay ningun entregable registrado con ese nombre</td>
+                                
+                                {% endif %}
                             </tbody>
                         </table>                
                     </div>

@@ -88,17 +88,39 @@ def entregables(request):
     return render(request, "entregables.html", context)
 
 def inicio(request):
-    return HttpResponse("Bienvenido a la pagina principal")
+    return render (request, "inicio.html")
 
 def inicioApp(request):
     return render(request, "inicio.html")
 
-def buscar(request):
-    busqueda = request.GET.get('buscar')
-    profesores = Profesor.objects.all()
+def buscarProfesor(request):
+    id = request.GET["id"]
+    if id != "":
+        profesores = Profesor.objects.filter(id = id)
+        return render(request, "profesores.html", {"profesores": profesores})
+    else:
+        return render(request, "profesores.html", {"mensaje": "Campo requerido a completar"})
 
-    if busqueda:
-        profesores = Profesor.objects.filter(
-            Q(id__icontains = busqueda)
-        ).distinct()
-    return render(request, "profesores.html", {"profesores":profesores})
+def buscarComision(request):
+    comision = request.GET["comision"]
+    if comision != "":
+        cursos= Curso.objects.filter(comision = comision)
+        return render (request, "cursos.html", {"cursos": cursos})
+    else:
+        return render (request, "cursos.html", {"mensaje": "Campo Requerido a completar"})
+    
+def buscarEstudiante(request):
+    id = request.GET["id"]
+    if id != "":
+        estudiantes= Estudiante.objects.filter(id = id)
+        return render (request, "estudiantes.html", {"estudiantes": estudiantes})
+    else:
+        return render (request, "estudiantes.html", {"mensaje": "Campo Requerido a completar"})
+    
+def buscarEntregable(request):
+    nombre = request.GET["nombre"]
+    if nombre != "":
+        entregables= Entregable.objects.filter(nombre = nombre)
+        return render (request, "entregables.html", {"entregables": entregables})
+    else:
+        return render (request, "entregables.html", {"mensaje": "Campo Requerido a completar"})

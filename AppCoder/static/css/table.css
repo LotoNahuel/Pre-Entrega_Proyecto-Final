@@ -10,8 +10,8 @@ table{
 }
 
 th, td{
-    border: solid 3px steelblue;
-    padding: 3;
+    border: solid 5px steelblue;
+    padding: 5;
 }
 
 thead{

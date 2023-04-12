@@ -17,6 +17,11 @@
                     <div id="main-container">
                         <table>
                             <tbody>
+                                <form action="{% url 'buscarProfesor' %}" method="GET">                            
+                                    <input type="number" name="id" id="id" placeholder="INSERTE ID">                              
+                                    <input type="submit" value="Buscar por ID">                                                                
+                                </form>                                 
+                                {% if profesores %}
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
@@ -40,6 +45,12 @@
                                     </td>
                                 </tr>
                                 {% endfor %}
+                                
+                                {% else %}
+
+                                <td>No hay ningun profesor registrado con esa ID</td>
+
+                                {% endif %}
                             </tbody>
                         </table>                
                     </div>
