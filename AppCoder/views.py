@@ -5,16 +5,6 @@ from .forms import *
 from django.db.models import Q
 # Create your views here.
 
-def crear_curso(request):
-    nombre_curso="Python"
-    comision_curso="51325"
-    print("Creando curso")
-
-    curso=Curso(nombre=nombre_curso, comision=comision_curso)
-    curso.save()
-    respuesta=f"Curso Creado --- {nombre_curso} - {comision_curso}"
-    return HttpResponse(respuesta)
-
 def CursoFormulario(request):
     return render(request, "curso.html")
 
@@ -34,6 +24,14 @@ def cursos(request):
     context = {"cursos": cursos, "form" : form}
     return render(request, "cursos.html", context)
 
+def buscarComision(request):
+    comision = request.GET["comision"]
+    if comision != "":
+        cursos= Curso.objects.filter(comision = comision)
+        return render (request, "cursos.html", {"cursos": cursos})
+    else:
+        return render (request, "cursos.html", {"mensaje": "Campo Requerido a completar"})
+
 def profesores(request):
     
     if request.method == "POST":
@@ -52,6 +50,14 @@ def profesores(request):
     context = {"profesores": profesores, "form" : form}
     return render(request, "profesores.html", context)
 
+def buscarProfesor(request):
+    id = request.GET["id"]
+    if id != "":
+        profesores = Profesor.objects.filter(id = id)
+        return render(request, "profesores.html", {"profesores": profesores})
+    else:
+        return render(request, "profesores.html", {"mensaje": "Campo requerido a completar"})
+
 def estudiantes(request):
     if request.method == "POST":
         form = EstudianteForm(request.POST)
@@ -68,6 +74,14 @@ def estudiantes(request):
     estudiantes = Estudiante.objects.all()
     context = {"estudiantes": estudiantes, "form" : form}
     return render(request, "estudiantes.html", context)
+
+def buscarEstudiante(request):
+    id = request.GET["id"]
+    if id != "":
+        estudiantes= Estudiante.objects.filter(id = id)
+        return render (request, "estudiantes.html", {"estudiantes": estudiantes})
+    else:
+        return render (request, "estudiantes.html", {"mensaje": "Campo Requerido a completar"})
 
 
 def entregables(request):
@@ -87,36 +101,6 @@ def entregables(request):
     context = {"entregables": entregables, "form" : form}
     return render(request, "entregables.html", context)
 
-def inicio(request):
-    return render (request, "inicio.html")
-
-def inicioApp(request):
-    return render(request, "inicio.html")
-
-def buscarProfesor(request):
-    id = request.GET["id"]
-    if id != "":
-        profesores = Profesor.objects.filter(id = id)
-        return render(request, "profesores.html", {"profesores": profesores})
-    else:
-        return render(request, "profesores.html", {"mensaje": "Campo requerido a completar"})
-
-def buscarComision(request):
-    comision = request.GET["comision"]
-    if comision != "":
-        cursos= Curso.objects.filter(comision = comision)
-        return render (request, "cursos.html", {"cursos": cursos})
-    else:
-        return render (request, "cursos.html", {"mensaje": "Campo Requerido a completar"})
-    
-def buscarEstudiante(request):
-    id = request.GET["id"]
-    if id != "":
-        estudiantes= Estudiante.objects.filter(id = id)
-        return render (request, "estudiantes.html", {"estudiantes": estudiantes})
-    else:
-        return render (request, "estudiantes.html", {"mensaje": "Campo Requerido a completar"})
-    
 def buscarEntregable(request):
     nombre = request.GET["nombre"]
     if nombre != "":
@@ -124,3 +108,9 @@ def buscarEntregable(request):
         return render (request, "entregables.html", {"entregables": entregables})
     else:
         return render (request, "entregables.html", {"mensaje": "Campo Requerido a completar"})
+
+def inicio(request):
+    return render (request, "inicio.html")
+
+def inicioApp(request):
+    return render(request, "inicio.html")
